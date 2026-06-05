@@ -1,14 +1,23 @@
 import { useState, useEffect } from 'react';
 
 export default function App() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div style={{ background: 'var(--ca-ivory)' }}>
+    <div style={{ background: 'var(--ca-ivory)', overflowX: 'hidden' }}>
       <Nav />
-      <Hero />
+      <Hero scrollY={scrollY} />
       <Proposition />
       <Pillars />
       <Framework />
       <Conversations />
+      <CTA />
       <Footer />
     </div>
   );
@@ -29,8 +38,8 @@ function Nav() {
         position: 'sticky',
         top: 0,
         zIndex: 20,
-        background: 'rgba(246,241,228,0.92)',
-        backdropFilter: 'blur(8px)',
+        background: 'rgba(246,241,228,0.94)',
+        backdropFilter: 'blur(10px)',
         borderBottom: '1px solid var(--ca-rule)',
         transition: 'padding 0.2s ease',
       }}
@@ -48,33 +57,33 @@ function Nav() {
         <a href="#top" style={{ display: 'flex', alignItems: 'center', gap: 13, marginRight: 'auto', textDecoration: 'none' }}>
           <MeridianMark size={scrolled ? 32 : 38} />
           <div>
-            <div style={{ fontFamily: 'IBM Plex Sans, sans-serif', fontWeight: 600, fontSize: 15, color: 'var(--ca-obsidian)', letterSpacing: '-0.01em', lineHeight: 1 }}>
+            <div style={{ fontFamily: 'IBM Plex Sans, sans-serif', fontWeight: 500, fontSize: 15, color: 'var(--ca-obsidian)', letterSpacing: '-0.01em', lineHeight: 1 }}>
               Constitutional Africa
             </div>
-            <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: '8.5px', color: 'var(--ca-brass-700)', marginTop: 3, letterSpacing: '0.22em' }}>
-              A PLATFORM OF THE TINDIRA FOUNDATION
+            <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: '8px', color: 'var(--ca-brass-700)', marginTop: 3, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+              A Platform for African Thought
             </div>
           </div>
         </a>
-        <nav style={{ display: 'flex', gap: 30 }}>
+        <nav style={{ display: 'flex', gap: 42 }}>
           {[
-            ['The Work', '#work'],
-            ['The Framework', '#framework'],
-            ['Conversations', '#conversations'],
-            ['Archive', '#archive'],
+            ['Work', '#work'],
+            ['Framework', '#framework'],
+            ['Listen', '#listen'],
+            ['About', '#about'],
           ].map(([label, href]) => (
             <a
               key={label}
               href={href}
               style={{
                 fontFamily: 'IBM Plex Sans, sans-serif',
-                fontSize: '13.5px',
+                fontSize: '13px',
                 fontWeight: 400,
                 color: 'var(--ca-obsidian)',
                 textDecoration: 'none',
-                paddingBottom: '3px',
+                paddingBottom: '4px',
                 borderBottom: '2px solid transparent',
-                transition: 'border-color 0.15s ease',
+                transition: 'border-color 0.2s ease',
               }}
               onMouseEnter={(e) => (e.currentTarget.style.borderBottomColor = 'var(--ca-brass-500)')}
               onMouseLeave={(e) => (e.currentTarget.style.borderBottomColor = 'transparent')}
@@ -83,19 +92,21 @@ function Nav() {
             </a>
           ))}
         </nav>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginLeft: 34 }}>
-          <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: '11px', color: 'var(--ca-ink-soft)', letterSpacing: '0.1em', cursor: 'pointer' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginLeft: 42 }}>
+          <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: '10px', color: 'var(--ca-ink-soft)', letterSpacing: '0.1em', cursor: 'pointer', textTransform: 'uppercase' }}>
             EN
           </span>
           <button
             className="ca-btn solid"
             style={{
-              padding: '9px 18px',
-              fontSize: '12.5px',
+              padding: '10px 20px',
+              fontSize: '12px',
               background: 'var(--ca-indigo-700)',
               border: '1.5px solid var(--ca-indigo-700)',
               color: 'var(--ca-ivory)',
               cursor: 'pointer',
+              borderRadius: '3px',
+              fontWeight: 500,
             }}
           >
             Join
@@ -106,14 +117,14 @@ function Nav() {
   );
 }
 
-function Hero() {
+function Hero({ scrollY }) {
   const THEMES = ['Governance', 'Institutions', 'Infrastructure', 'Capital', 'Technology & AI', 'Integration', 'Culture & Heritage', 'Youth & Leadership'];
 
   return (
     <section
       id="top"
       style={{
-        background: 'var(--ca-indigo-700)',
+        background: 'linear-gradient(135deg, var(--ca-indigo-700) 0%, #1a2f5a 100%)',
         color: 'var(--ca-ivory)',
         position: 'relative',
         overflow: 'hidden',
@@ -122,32 +133,32 @@ function Hero() {
       <div
         style={{
           position: 'absolute',
-          right: -160,
-          top: -120,
-          opacity: 0.07,
+          right: '-12%',
+          top: `-${scrollY * 0.15}px`,
+          opacity: 0.06,
           pointerEvents: 'none',
         }}
       >
-        <MeridianMark size={680} color="#F6F1E4" variant="latitudes" />
+        <MeridianMark size={720} color="#F6F1E4" variant="latitudes" />
       </div>
 
-      <div style={{ maxWidth: '1320px', margin: '0 auto', padding: '34px 56px 0' }}>
+      <div style={{ maxWidth: '1320px', margin: '0 auto', padding: '40px 56px 0' }}>
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'auto 1fr auto',
-            gap: 20,
+            gap: 24,
             alignItems: 'center',
-            color: 'rgba(246,241,228,0.7)',
+            color: 'rgba(246,241,228,0.65)',
+            paddingBottom: '56px',
+            fontSize: '10px',
+            letterSpacing: '0.28em',
+            textTransform: 'uppercase',
           }}
         >
-          <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: '10px', letterSpacing: '0.26em' }}>
-            SEASON ONE · MMXXVI
-          </span>
-          <div style={{ height: 1, background: 'var(--ca-rule-on-dark)' }} />
-          <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: '10px', letterSpacing: '0.26em' }}>
-            A PAN-AFRICAN PLATFORM
-          </span>
+          <span>2026</span>
+          <div style={{ height: 1, background: 'rgba(246,241,228,0.2)' }} />
+          <span>Pan-African Platform</span>
         </div>
       </div>
 
@@ -155,142 +166,159 @@ function Hero() {
         style={{
           maxWidth: '1320px',
           margin: '0 auto',
-          padding: '56px 56px 64px',
+          padding: '48px 56px 88px',
           display: 'grid',
-          gridTemplateColumns: '1.62fr 1fr',
-          gap: 64,
+          gridTemplateColumns: '1.75fr 1fr',
+          gap: 80,
           alignItems: 'start',
         }}
       >
         <div>
           <div
-            className="ca-eyebrow"
             style={{
-              color: 'var(--ca-brass-300)',
               fontFamily: 'IBM Plex Mono, monospace',
-              fontSize: '11px',
-              letterSpacing: '0.22em',
+              fontSize: '10px',
+              letterSpacing: '0.28em',
               textTransform: 'uppercase',
+              color: 'var(--ca-brass-300)',
+              marginBottom: '32px',
             }}
           >
-            African Constitutional Economics
+            What We Study
           </div>
           <h1
             style={{
-              fontFamily: 'IBM Plex Sans, sans-serif',
-              fontSize: '74px',
-              fontWeight: 300,
-              lineHeight: 0.99,
-              letterSpacing: '-0.035em',
-              margin: '22px 0 0',
+              fontFamily: 'IBM Plex Serif, serif',
+              fontSize: '62px',
+              fontWeight: 400,
+              lineHeight: 1.12,
+              letterSpacing: '-0.02em',
+              margin: '0 0 36px 0',
+              color: 'var(--ca-ivory)',
             }}
           >
-            Interpreting Africa&apos;s <br />
-            <span style={{ fontWeight: 600 }}>constitutional‑economic</span>
-            <br />
-            <span
-              style={{
-                fontFamily: 'IBM Plex Serif, serif',
-                fontStyle: 'italic',
-                fontWeight: 500,
-                color: 'var(--ca-brass-300)',
-              }}
-            >
-              transformation.
-            </span>
+            Constitutional economics as the lens for Africa's future
           </h1>
           <p
             style={{
               fontFamily: 'IBM Plex Sans, sans-serif',
-              fontSize: '18px',
-              lineHeight: 1.55,
-              opacity: 0.86,
-              marginTop: 26,
-              maxWidth: 560,
-              fontWeight: 300,
+              fontSize: '16px',
+              lineHeight: 1.75,
+              opacity: 0.87,
+              maxWidth: 600,
+              fontWeight: 400,
+              color: 'rgba(246, 241, 228, 0.95)',
+              marginBottom: '44px',
             }}
           >
-            A serious, hopeful, Pan-African conversation about the rules, institutions and infrastructure on which Africa&apos;s future will be built.
+            We believe Africa's future is determined not by what lies beneath the soil, but by the quality of the institutions and constitutional frameworks that guide investment, innovation, and shared prosperity.
           </p>
-          <div style={{ marginTop: 34, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             <a
-              href="#conversations"
-              className="ca-btn brass"
+              href="#listen"
               style={{
-                padding: '15px 24px',
+                padding: '14px 28px',
                 background: 'var(--ca-brass-500)',
                 border: '1.5px solid var(--ca-brass-500)',
                 color: 'var(--ca-obsidian)',
                 textDecoration: 'none',
+                fontFamily: 'IBM Plex Sans, sans-serif',
+                fontWeight: 500,
+                fontSize: '13px',
+                borderRadius: '3px',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                display: 'inline-block',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'var(--ca-brass-400)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'var(--ca-brass-500)';
               }}
             >
-              Listen to the conversations →
+              Listen Now →
             </a>
             <a
               href="#framework"
-              className="ca-btn"
               style={{
-                padding: '15px 24px',
-                borderColor: 'var(--ca-ivory)',
+                padding: '14px 28px',
+                borderColor: 'rgba(246, 241, 228, 0.35)',
+                border: '1.5px solid rgba(246, 241, 228, 0.35)',
                 color: 'var(--ca-ivory)',
                 textDecoration: 'none',
+                fontFamily: 'IBM Plex Sans, sans-serif',
+                fontWeight: 400,
+                fontSize: '13px',
+                borderRadius: '3px',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                display: 'inline-block',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(246, 241, 228, 0.7)';
+                e.currentTarget.style.background = 'rgba(246, 241, 228, 0.08)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(246, 241, 228, 0.35)';
+                e.currentTarget.style.background = 'transparent';
               }}
             >
-              Explore the framework
+              Learn Framework
             </a>
           </div>
         </div>
 
-        <div style={{ paddingTop: 6 }}>
+        <div style={{ paddingTop: 12 }}>
           <div
             className="ca-img"
             style={{
               aspectRatio: '4/5',
-              minHeight: 420,
-              borderRadius: '4px',
+              minHeight: 440,
+              borderRadius: '6px',
               position: 'relative',
             }}
           >
             <span
               style={{
                 position: 'absolute',
-                top: 12,
-                left: 12,
+                top: 16,
+                left: 16,
                 fontFamily: 'IBM Plex Mono, monospace',
-                fontSize: '9px',
-                letterSpacing: '0.2em',
+                fontSize: '8px',
+                letterSpacing: '0.24em',
                 textTransform: 'uppercase',
-                color: 'rgba(246,241,228,0.9)',
+                color: 'rgba(246,241,228,0.65)',
               }}
             >
-              FIG · 01 · ARCHIVAL DUOTONE
-            </span>
-            <span
-              style={{
-                position: 'absolute',
-                bottom: 12,
-                left: 12,
-                fontFamily: 'IBM Plex Mono, monospace',
-                fontSize: '9px',
-                letterSpacing: '0.16em',
-                textTransform: 'uppercase',
-                color: 'rgba(246,241,228,0.7)',
-              }}
-            >
-              constitutional assembly · chamber
+              Constitutional Assembly
             </span>
           </div>
-          <div style={{ marginTop: 20, display: 'flex', flexWrap: 'wrap', gap: 7 }}>
+          <div style={{ marginTop: 32, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {THEMES.map((t) => (
               <span
                 key={t}
-                className="ca-chip"
                 style={{
-                  border: '1px solid var(--ca-rule-on-dark)',
-                  color: 'rgba(246,241,228,0.82)',
-                  borderColor: 'rgba(246,241,228,0.3)',
-                  background: 'rgba(31, 90, 61, 0.1)',
-                  color: 'var(--ca-ink)',
+                  border: '1px solid rgba(246,241,228,0.22)',
+                  color: 'rgba(246,241,228,0.72)',
+                  background: 'rgba(246,241,228,0.05)',
+                  fontFamily: 'IBM Plex Sans, sans-serif',
+                  fontSize: '11px',
+                  fontWeight: 400,
+                  letterSpacing: '0.01em',
+                  padding: '6px 12px',
+                  borderRadius: '3px',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease',
+                  display: 'inline-block',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(246,241,228,0.12)';
+                  e.currentTarget.style.borderColor = 'rgba(246,241,228,0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'rgba(246,241,228,0.05)';
+                  e.currentTarget.style.borderColor = 'rgba(246,241,228,0.22)';
                 }}
               >
                 {t}
@@ -310,10 +338,10 @@ function Proposition() {
         style={{
           maxWidth: '1320px',
           margin: '0 auto',
-          padding: '88px 56px',
+          padding: '92px 56px',
           display: 'grid',
           gridTemplateColumns: 'auto 1fr',
-          gap: 48,
+          gap: 56,
           alignItems: 'start',
         }}
       >
@@ -321,15 +349,16 @@ function Proposition() {
           style={{
             fontFamily: 'IBM Plex Mono, monospace',
             color: 'var(--ca-brass-700)',
-            fontSize: '11px',
-            letterSpacing: '0.22em',
+            fontSize: '10px',
+            letterSpacing: '0.24em',
             textTransform: 'uppercase',
             writingMode: 'vertical-rl',
             transform: 'rotate(180deg)',
             alignSelf: 'stretch',
+            marginTop: '8px',
           }}
         >
-          The Proposition
+          Our Premise
         </div>
         <div>
           <p
@@ -344,7 +373,7 @@ function Proposition() {
               maxWidth: 1000,
             }}
           >
-            Africa&apos;s future will be decided less by what lies beneath its soil than by the quality of the{' '}
+            Africa's future will be decided less by what lies beneath its soil than by the quality of the{' '}
             <span
               style={{
                 fontStyle: 'italic',
@@ -356,35 +385,35 @@ function Proposition() {
           </p>
           <div
             style={{
-              marginTop: 32,
+              marginTop: 40,
               display: 'grid',
               gridTemplateColumns: '1fr 1fr',
               gap: 48,
-              maxWidth: 880,
+              maxWidth: 920,
               alignItems: 'start',
             }}
           >
             <p
               style={{
                 fontFamily: 'IBM Plex Sans, sans-serif',
-                fontSize: '15.5px',
-                lineHeight: 1.65,
+                fontSize: '15px',
+                lineHeight: 1.7,
                 color: 'var(--ca-ink)',
                 margin: 0,
               }}
             >
-              This is the proposition of <b>African Constitutional Economics</b> — the framework at the heart of everything we do. It holds that constitutional and institutional design are not downstream of prosperity, but its precondition.
+              This is the premise of <b>African Constitutional Economics</b> — the framework at the heart of everything we do. It holds that constitutional and institutional design are not downstream of prosperity, but its precondition.
             </p>
             <p
               style={{
                 fontFamily: 'IBM Plex Sans, sans-serif',
-                fontSize: '15.5px',
-                lineHeight: 1.65,
+                fontSize: '15px',
+                lineHeight: 1.7,
                 color: 'var(--ca-ink-soft)',
                 margin: 0,
               }}
             >
-              Every conversation, brief and paper we publish is examined through that single analytical lens — and built to be worth revisiting a decade on.
+              Every conversation, brief, and analysis we publish is examined through that single lens — and built to be worth revisiting a decade on.
             </p>
           </div>
         </div>
@@ -409,55 +438,56 @@ function Pillars() {
         style={{
           maxWidth: '1320px',
           margin: '0 auto',
-          padding: '88px 56px 96px',
+          padding: '92px 56px 104px',
         }}
       >
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: '1fr auto',
-            gap: 40,
+            gap: 48,
             alignItems: 'end',
-            marginBottom: 44,
+            marginBottom: 52,
           }}
         >
           <div>
             <div
-              className="ca-eyebrow"
               style={{
-                color: 'var(--ca-brass-700)',
                 fontFamily: 'IBM Plex Mono, monospace',
-                fontSize: '11px',
+                color: 'var(--ca-brass-700)',
+                fontSize: '10px',
                 letterSpacing: '0.26em',
+                textTransform: 'uppercase',
+                marginBottom: '12px',
               }}
             >
-              The Work
+              Six Pillars
             </div>
             <h2
               style={{
-                fontFamily: 'IBM Plex Sans, sans-serif',
-                fontSize: '48px',
-                fontWeight: 300,
-                margin: '14px 0 0',
-                letterSpacing: '-0.03em',
+                fontFamily: 'IBM Plex Serif, serif',
+                fontSize: '44px',
+                fontWeight: 400,
+                margin: 0,
+                letterSpacing: '-0.02em',
                 color: 'var(--ca-obsidian)',
-                lineHeight: 1.0,
+                lineHeight: 1.1,
               }}
             >
-              Six pillars, <span style={{ fontFamily: 'IBM Plex Serif, serif', fontStyle: 'italic', fontWeight: 500, color: 'var(--ca-indigo-700)' }}>one continental story.</span>
+              One continental story
             </h2>
           </div>
           <p
             style={{
               fontFamily: 'IBM Plex Sans, sans-serif',
-              fontSize: '14.5px',
-              lineHeight: 1.6,
+              fontSize: '14px',
+              lineHeight: 1.65,
               color: 'var(--ca-ink-soft)',
               maxWidth: 380,
               margin: 0,
             }}
           >
-            Every conversation sits within one of six pillars — and is examined through a single analytical lens: African Constitutional Economics.
+            Each pillar represents a dimension of Africa's constitutional and economic future, examined through rigorous analysis and conversation.
           </p>
         </div>
 
@@ -467,6 +497,7 @@ function Pillars() {
             gridTemplateColumns: 'repeat(3, 1fr)',
             gap: 0,
             border: '1px solid var(--ca-rule)',
+            background: 'var(--ca-ivory)',
           }}
         >
           {PILLARS.map((p, i) => {
@@ -484,32 +515,34 @@ function Pillars() {
               <div
                 key={p.verb}
                 style={{
-                  padding: '30px 28px 26px',
-                  minHeight: 268,
+                  padding: '32px 28px',
+                  minHeight: 280,
                   display: 'flex',
                   flexDirection: 'column',
                   borderRight: col < 2 ? '1px solid var(--ca-rule)' : 'none',
                   borderTop: row > 0 ? '1px solid var(--ca-rule)' : 'none',
                   background: i % 2 === 0 ? 'var(--ca-paper)' : 'transparent',
                   cursor: 'pointer',
-                  transition: 'background 0.2s ease',
+                  transition: 'background 0.15s ease',
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--ca-paper-2)')}
                 onMouseLeave={(e) => (e.currentTarget.style.background = i % 2 === 0 ? 'var(--ca-paper)' : 'transparent')}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                  <div style={{ fontFamily: 'IBM Plex Serif, serif', fontStyle: 'italic', fontWeight: 400, fontSize: 26, color: accent }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                  <div style={{ fontFamily: 'IBM Plex Serif, serif', fontStyle: 'italic', fontWeight: 400, fontSize: 28, color: accent }}>
                     {p.n}
                   </div>
-                  <MeridianMark size={34} color={accent} variant="minimal" />
+                  <div style={{ opacity: 0.5 }}>
+                    <MeridianMark size={30} color={accent} variant="minimal" />
+                  </div>
                 </div>
                 <h3
                   style={{
                     fontFamily: 'IBM Plex Serif, serif',
-                    fontSize: '27px',
+                    fontSize: '24px',
                     fontWeight: 600,
-                    margin: '18px 0 0',
-                    lineHeight: 1.0,
+                    margin: '4px 0 12px',
+                    lineHeight: 1.1,
                     color: 'var(--ca-obsidian)',
                   }}
                 >
@@ -518,11 +551,12 @@ function Pillars() {
                 <div
                   style={{
                     fontFamily: 'IBM Plex Mono, monospace',
-                    fontSize: '10px',
-                    color: 'var(--ca-ink-soft)',
-                    letterSpacing: '0.12em',
-                    marginTop: 10,
+                    fontSize: '9px',
+                    color: accent,
+                    letterSpacing: '0.14em',
+                    marginBottom: '12px',
                     textTransform: 'uppercase',
+                    opacity: 0.75,
                   }}
                 >
                   {p.theme}
@@ -531,9 +565,9 @@ function Pillars() {
                   style={{
                     fontFamily: 'IBM Plex Sans, sans-serif',
                     fontSize: '13px',
-                    lineHeight: 1.55,
+                    lineHeight: 1.6,
                     color: 'var(--ca-ink-soft)',
-                    margin: '14px 0 0',
+                    margin: '0 0 16px 0',
                     flex: 1,
                   }}
                 >
@@ -543,14 +577,18 @@ function Pillars() {
                   href="#"
                   style={{
                     fontFamily: 'IBM Plex Mono, monospace',
-                    fontSize: '10px',
+                    fontSize: '9px',
                     color: accent,
                     letterSpacing: '0.16em',
-                    marginTop: 16,
                     textDecoration: 'none',
+                    display: 'inline-block',
+                    transition: 'letter-spacing 0.15s ease',
+                    textTransform: 'uppercase',
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.letterSpacing = '0.24em')}
+                  onMouseLeave={(e) => (e.currentTarget.style.letterSpacing = '0.16em')}
                 >
-                  EXPLORE PILLAR →
+                  Explore
                 </a>
               </div>
             );
@@ -578,7 +616,7 @@ function Framework() {
           left: '50%',
           top: '50%',
           transform: 'translate(-50%,-50%)',
-          opacity: 0.05,
+          opacity: 0.04,
           pointerEvents: 'none',
         }}
       >
@@ -588,75 +626,88 @@ function Framework() {
         style={{
           maxWidth: '1320px',
           margin: '0 auto',
-          padding: '90px 56px',
+          padding: '96px 56px',
           position: 'relative',
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          gap: 72,
+          gap: 80,
           alignItems: 'center',
         }}
       >
         <div>
           <div
-            className="ca-eyebrow"
             style={{
-              color: 'var(--ca-brass-300)',
               fontFamily: 'IBM Plex Mono, monospace',
+              color: 'var(--ca-brass-300)',
+              fontSize: '10px',
+              letterSpacing: '0.28em',
+              textTransform: 'uppercase',
+              marginBottom: '20px',
             }}
           >
-            The Analytical Lens
+            The Framework
           </div>
           <h2
             style={{
-              fontFamily: 'IBM Plex Sans, sans-serif',
-              fontSize: '56px',
-              fontWeight: 300,
-              margin: '16px 0 0',
-              lineHeight: 0.98,
-              letterSpacing: '-0.03em',
+              fontFamily: 'IBM Plex Serif, serif',
+              fontSize: '48px',
+              fontWeight: 400,
+              margin: 0,
+              lineHeight: 1.1,
+              letterSpacing: '-0.015em',
             }}
           >
             African <br />
-            <span style={{ fontWeight: 600 }}>Constitutional</span>
+            <span style={{ fontWeight: 500 }}>Constitutional</span>
             <br />
-            <span style={{ fontFamily: 'IBM Plex Serif, serif', fontStyle: 'italic', fontWeight: 500, color: 'var(--ca-brass-300)' }}>
-              Economics.
-            </span>
+            <span style={{ fontStyle: 'italic', color: 'var(--ca-brass-300)' }}>Economics.</span>
           </h2>
           <a
             href="#"
-            className="ca-btn brass"
             style={{
-              marginTop: 30,
+              marginTop: 32,
+              padding: '14px 28px',
               background: 'var(--ca-brass-500)',
               border: '1.5px solid var(--ca-brass-500)',
               color: 'var(--ca-obsidian)',
               textDecoration: 'none',
-              padding: '15px 24px',
+              fontFamily: 'IBM Plex Sans, sans-serif',
+              fontWeight: 500,
+              fontSize: '13px',
+              borderRadius: '3px',
+              cursor: 'pointer',
+              display: 'inline-block',
+              transition: 'all 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'var(--ca-brass-400)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'var(--ca-brass-500)';
             }}
           >
-            Explore the framework →
+            Explore Framework →
           </a>
         </div>
         <div>
           <p
             style={{
               fontFamily: 'IBM Plex Serif, serif',
-              fontSize: '23px',
+              fontSize: '22px',
               fontWeight: 400,
-              lineHeight: 1.45,
+              lineHeight: 1.5,
               margin: 0,
               opacity: 0.92,
             }}
           >
             A framework for reading the continent: how the design of constitutions and institutions shapes investment, infrastructure, innovation and the long arc of African prosperity.
           </p>
-          <div style={{ height: 1, background: 'var(--ca-rule-on-dark)', margin: '34px 0' }} />
+          <div style={{ height: 1, background: 'var(--ca-rule-on-dark)', margin: '36px 0' }} />
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: '1fr 1fr',
-              gap: 26,
+              gap: 28,
             }}
           >
             {[
@@ -669,10 +720,11 @@ function Framework() {
                 <h3
                   style={{
                     fontFamily: 'IBM Plex Serif, serif',
-                    fontSize: '16px',
+                    fontSize: '15px',
                     fontWeight: 600,
                     margin: 0,
                     color: 'var(--ca-ivory)',
+                    marginBottom: '6px',
                   }}
                 >
                   {h}
@@ -682,8 +734,8 @@ function Framework() {
                     fontFamily: 'IBM Plex Sans, sans-serif',
                     fontSize: '13px',
                     lineHeight: 1.55,
-                    margin: '8px 0 0',
-                    opacity: 0.82,
+                    margin: 0,
+                    opacity: 0.8,
                   }}
                 >
                   {d}
@@ -700,30 +752,34 @@ function Framework() {
 function Conversations() {
   return (
     <section
-      id="conversations"
+      id="listen"
       style={{
         background: 'var(--ca-ivory)',
-        padding: '88px 56px',
+        padding: '96px 56px',
       }}
     >
       <div style={{ maxWidth: '1320px', margin: '0 auto' }}>
-        <div style={{ marginBottom: 48 }}>
+        <div style={{ marginBottom: 56 }}>
           <div
-            className="ca-eyebrow"
             style={{
               fontFamily: 'IBM Plex Mono, monospace',
               color: 'var(--ca-brass-700)',
+              fontSize: '10px',
+              letterSpacing: '0.26em',
+              textTransform: 'uppercase',
+              marginBottom: '12px',
             }}
           >
             Latest Conversations
           </div>
           <h2
             style={{
-              fontFamily: 'IBM Plex Sans, sans-serif',
-              fontSize: '48px',
-              fontWeight: 300,
-              marginTop: 14,
+              fontFamily: 'IBM Plex Serif, serif',
+              fontSize: '44px',
+              fontWeight: 400,
+              marginTop: 0,
               color: 'var(--ca-obsidian)',
+              margin: 0,
             }}
           >
             The Podcast
@@ -748,6 +804,16 @@ function Conversations() {
                 padding: 24,
                 border: '1px solid var(--ca-rule)',
                 borderRadius: 4,
+                transition: 'all 0.15s ease',
+                cursor: 'pointer',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 8px 16px rgba(26, 32, 48, 0.08)';
+                e.currentTarget.style.borderColor = 'var(--ca-brass-500)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.borderColor = 'var(--ca-rule)';
               }}
             >
               <div
@@ -755,7 +821,7 @@ function Conversations() {
                 style={{
                   height: 160,
                   marginBottom: 16,
-                  borderRadius: 2,
+                  borderRadius: 3,
                 }}
               />
               <div
@@ -763,7 +829,7 @@ function Conversations() {
                   fontFamily: 'IBM Plex Mono, monospace',
                   fontSize: '10px',
                   color: 'var(--ca-brass-700)',
-                  marginBottom: 8,
+                  marginBottom: 10,
                   letterSpacing: '0.16em',
                   textTransform: 'uppercase',
                 }}
@@ -774,10 +840,11 @@ function Conversations() {
                 style={{
                   fontFamily: 'IBM Plex Serif, serif',
                   fontSize: '18px',
-                  fontWeight: 700,
+                  fontWeight: 600,
                   color: 'var(--ca-ink)',
                   marginBottom: 8,
                   lineHeight: 1.3,
+                  margin: '0 0 8px 0',
                 }}
               >
                 {ep.title}
@@ -788,15 +855,19 @@ function Conversations() {
                   fontSize: '13px',
                   color: 'var(--ca-ink-soft)',
                   marginBottom: 16,
+                  margin: '0 0 16px 0',
                 }}
               >
                 {ep.guest}
               </p>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span
-                  className="ca-chip"
                   style={{
                     color: 'var(--ca-ink)',
+                    fontFamily: 'IBM Plex Mono, monospace',
+                    fontSize: '10px',
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
                   }}
                 >
                   {ep.duration}
@@ -812,6 +883,13 @@ function Conversations() {
                     fontSize: '11px',
                     fontFamily: 'IBM Plex Mono, monospace',
                     fontWeight: 600,
+                    transition: 'all 0.15s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'var(--ca-brass-500)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'var(--ca-brass-600)';
                   }}
                 >
                   ▶ Play
@@ -825,13 +903,106 @@ function Conversations() {
   );
 }
 
+function CTA() {
+  return (
+    <section
+      id="about"
+      style={{
+        background: 'var(--ca-indigo-700)',
+        color: 'var(--ca-ivory)',
+        padding: '88px 56px',
+      }}
+    >
+      <div
+        style={{
+          maxWidth: '820px',
+          margin: '0 auto',
+          textAlign: 'center',
+        }}
+      >
+        <h2
+          style={{
+            fontFamily: 'IBM Plex Serif, serif',
+            fontSize: '44px',
+            fontWeight: 400,
+            lineHeight: 1.15,
+            marginBottom: '24px',
+          }}
+        >
+          Join the conversation about Africa's future
+        </h2>
+        <p
+          style={{
+            fontFamily: 'IBM Plex Sans, sans-serif',
+            fontSize: '16px',
+            lineHeight: 1.7,
+            opacity: 0.88,
+            marginBottom: '36px',
+            margin: '0 auto 36px',
+          }}
+        >
+          Subscribe to receive the latest episodes, research briefs, and analysis on African constitutional economics.
+        </p>
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+          <input
+            type="email"
+            placeholder="your@email.com"
+            style={{
+              fontFamily: 'IBM Plex Sans, sans-serif',
+              padding: '12px 18px',
+              border: '1.5px solid rgba(246, 241, 228, 0.35)',
+              background: 'rgba(246, 241, 228, 0.08)',
+              color: 'var(--ca-ivory)',
+              borderRadius: '3px',
+              fontSize: '14px',
+              minWidth: '280px',
+              outline: 'none',
+              transition: 'all 0.2s ease',
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(246, 241, 228, 0.6)';
+              e.currentTarget.style.background = 'rgba(246, 241, 228, 0.12)';
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.borderColor = 'rgba(246, 241, 228, 0.35)';
+              e.currentTarget.style.background = 'rgba(246, 241, 228, 0.08)';
+            }}
+          />
+          <button
+            style={{
+              fontFamily: 'IBM Plex Sans, sans-serif',
+              padding: '12px 28px',
+              background: 'var(--ca-brass-500)',
+              border: 'none',
+              color: 'var(--ca-obsidian)',
+              cursor: 'pointer',
+              borderRadius: '3px',
+              fontWeight: 500,
+              fontSize: '14px',
+              transition: 'all 0.15s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'var(--ca-brass-400)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'var(--ca-brass-500)';
+            }}
+          >
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   return (
     <footer
       style={{
         background: 'var(--ca-obsidian)',
         color: 'var(--ca-ivory)',
-        padding: '60px 56px',
+        padding: '64px 56px',
         borderTop: '1px solid var(--ca-rule-on-dark)',
       }}
     >
@@ -841,23 +1012,25 @@ function Footer() {
           margin: '0 auto',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: 40,
-          marginBottom: 60,
+          gap: 48,
+          marginBottom: 56,
         }}
       >
         <div>
           <h3
             style={{
               fontFamily: 'IBM Plex Serif, serif',
-              fontSize: '14px',
+              fontSize: '13px',
               fontWeight: 600,
               marginBottom: 16,
               opacity: 0.9,
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
             }}
           >
-            NAVIGATION
+            Navigate
           </h3>
-          {['The Work', 'The Framework', 'Conversations', 'Archive'].map((link) => (
+          {['Work', 'Framework', 'Listen', 'About'].map((link) => (
             <a
               key={link}
               href="#"
@@ -865,11 +1038,14 @@ function Footer() {
                 display: 'block',
                 fontFamily: 'IBM Plex Sans, sans-serif',
                 fontSize: '13px',
-                marginBottom: 8,
-                opacity: 0.8,
+                marginBottom: 10,
+                opacity: 0.75,
                 color: 'var(--ca-ivory)',
                 textDecoration: 'none',
+                transition: 'opacity 0.15s ease',
               }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.75')}
             >
               {link}
             </a>
@@ -880,20 +1056,22 @@ function Footer() {
           <h3
             style={{
               fontFamily: 'IBM Plex Serif, serif',
-              fontSize: '14px',
+              fontSize: '13px',
               fontWeight: 600,
               marginBottom: 16,
               opacity: 0.9,
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
             }}
           >
-            LISTEN
+            Listen
           </h3>
           <p
             style={{
               fontFamily: 'IBM Plex Sans, sans-serif',
               fontSize: '13px',
               lineHeight: 1.6,
-              opacity: 0.8,
+              opacity: 0.75,
               margin: 0,
             }}
           >
@@ -905,19 +1083,21 @@ function Footer() {
           <h3
             style={{
               fontFamily: 'IBM Plex Serif, serif',
-              fontSize: '14px',
+              fontSize: '13px',
               fontWeight: 600,
               marginBottom: 16,
               opacity: 0.9,
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
             }}
           >
-            CONTACT
+            Contact
           </h3>
           <p
             style={{
               fontFamily: 'IBM Plex Sans, sans-serif',
               fontSize: '13px',
-              opacity: 0.8,
+              opacity: 0.75,
               margin: 0,
             }}
           >
@@ -937,12 +1117,12 @@ function Footer() {
           opacity: 0.6,
         }}
       >
-        <p style={{ margin: 0 }}>© 2026 Constitutional Africa. All rights reserved.</p>
+        <p style={{ margin: 0 }}>© 2026 Constitutional Africa</p>
         <div style={{ display: 'flex', gap: 24 }}>
-          <a href="#" style={{ color: 'var(--ca-ivory)', textDecoration: 'none' }}>
+          <a href="#" style={{ color: 'var(--ca-ivory)', textDecoration: 'none', opacity: 0.6, transition: 'opacity 0.15s ease' }} onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')} onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.6')}>
             Privacy
           </a>
-          <a href="#" style={{ color: 'var(--ca-ivory)', textDecoration: 'none' }}>
+          <a href="#" style={{ color: 'var(--ca-ivory)', textDecoration: 'none', opacity: 0.6, transition: 'opacity 0.15s ease' }} onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')} onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.6')}>
             Terms
           </a>
         </div>
