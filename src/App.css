@@ -1,0 +1,84 @@
+/* App Component Styles */
+* {
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+a {
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+ul {
+  list-style-position: inside;
+  margin: 0;
+}
+
+li {
+  margin: 0;
+}
+
+/* Responsive Typography */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .ca-btn {
+    padding: 12px 16px;
+    font-size: 10px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+main > * {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Article Cards */
+article {
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+article:hover {
+  transform: translateY(-4px);
+}
