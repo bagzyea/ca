@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  background: #efece5;
+}
+
+body {
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  color: #1a1612;
+  line-height: 1.6;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Design system variables */
+:root {
+  --ink: #1a1612;
+  --ink-soft: #5a544b;
+  --ink-faint: #9a948a;
+  --paper: #faf7f0;
+  --paper-2: #f3efe6;
+  --rule: #1a1612;
+  --accent-green: #1f5a3d;
+  --accent-gold: #c89b3c;
+  --accent-terra: #b25a32;
+  --accent-indigo: #1d2d5a;
+}
+
+/* Wireframe component styles */
+.wf {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  color: var(--ink);
+}
+
+.wf-paper {
+  background: var(--paper);
+}
+
+.wf h1, .wf h2, .wf h3 {
+  font-family: "Kalam", cursive;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.wf-handwrite {
+  font-family: "Caveat", cursive;
+}
+
+.wf-box {
+  border: 1.5px solid var(--ink);
+  background: #fff;
+}
+
+.wf-box.dashed {
+  border-style: dashed;
+}
+
+.wf-box.thick {
+  border-width: 2px;
+}
+
+.wf-label-u {
+  display: inline-block;
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid var(--ink);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}

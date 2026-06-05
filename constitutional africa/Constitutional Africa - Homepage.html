@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Constitutional Africa — Homepage</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ca-indigo-900:#0A1330;
+    --ca-indigo-800:#0F1B3D;
+    --ca-indigo-700:#16264D;
+    --ca-indigo-600:#1E325C;
+    --ca-indigo-500:#2F4878;
+    --ca-indigo-300:#7E8FB4;
+    --ca-indigo-100:#D8DDEC;
+
+    --ca-brass-700:#8E6B26;
+    --ca-brass-600:#A47E2E;
+    --ca-brass-500:#B38A3A;
+    --ca-brass-400:#C6A050;
+    --ca-brass-300:#D6BC78;
+
+    --ca-jade-700:#2E5E48;
+    --ca-jade-600:#3E7A5E;
+    --ca-jade-400:#69A185;
+
+    --ca-terra-600:#A65238;
+    --ca-terra-500:#B96846;
+
+    --ca-ivory:#F6F1E4;
+    --ca-ivory-2:#EFE8D4;
+    --ca-paper:#FBF7EC;
+    --ca-paper-2:#F1ECDE;
+
+    --ca-obsidian:#0E1320;
+    --ca-ink:#1B2030;
+    --ca-ink-soft:#4A506A;
+    --ca-ink-faint:#8B91A8;
+
+    --ca-rule:rgba(14,19,32,0.14);
+    --ca-rule-on-dark:rgba(246,241,228,0.16);
+  }
+
+  * { box-sizing:border-box; }
+  html, body { margin:0; padding:0; }
+  body {
+    background:var(--ca-ivory);
+    color:var(--ca-ink);
+    font-family:"IBM Plex Sans", system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  ::selection { background:var(--ca-brass-400); color:var(--ca-obsidian); }
+
+  a { color:inherit; }
+
+  .wrap { max-width:1320px; margin:0 auto; padding:0 56px; }
+
+  .ca-mono  { font-family:"IBM Plex Mono", monospace; }
+  .ca-serif { font-family:"IBM Plex Serif", serif; }
+  .ca-sans  { font-family:"IBM Plex Sans", system-ui, sans-serif; }
+
+  .eyebrow {
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11px; letter-spacing:0.26em; text-transform:uppercase;
+  }
+
+  .chip {
+    display:inline-flex; align-items:center;
+    padding:5px 11px;
+    font-family:"IBM Plex Mono", monospace; font-size:10px;
+    letter-spacing:0.16em; text-transform:uppercase;
+  }
+
+  .btn {
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 22px;
+    font-family:"IBM Plex Sans", sans-serif; font-weight:500; font-size:13.5px;
+    letter-spacing:0.01em; line-height:1;
+    border:1.5px solid var(--ca-obsidian); background:transparent; color:var(--ca-obsidian);
+    cursor:pointer; transition:transform .15s ease, background .15s ease, color .15s ease;
+    text-decoration:none;
+  }
+  .btn:hover { transform:translateY(-1px); }
+  .btn.solid { background:var(--ca-indigo-700); border-color:var(--ca-indigo-700); color:var(--ca-ivory); }
+  .btn.solid:hover { background:var(--ca-indigo-800); }
+  .btn.brass { background:var(--ca-brass-500); border-color:var(--ca-brass-500); color:var(--ca-obsidian); }
+  .btn.brass:hover { background:var(--ca-brass-400); }
+  .btn.ghost-light { border-color:var(--ca-ivory); color:var(--ca-ivory); }
+  .btn.ghost-light:hover { background:var(--ca-ivory); color:var(--ca-obsidian); }
+
+  /* duotone image placeholders — per the archival-indigo imagery strategy */
+  .img {
+    position:relative; overflow:hidden;
+    background:
+      repeating-linear-gradient(135deg, transparent 0 20px, rgba(255,255,255,0.035) 20px 21px),
+      radial-gradient(120% 90% at 32% 18%, #2F4878 0%, #16264D 52%, #0F1B3D 100%);
+    color:var(--ca-ivory);
+  }
+  .img.warm {
+    background:
+      repeating-linear-gradient(135deg, transparent 0 20px, rgba(255,255,255,0.035) 20px 21px),
+      radial-gradient(120% 90% at 68% 26%, #C6A050 0%, #8E6B26 44%, #1E325C 100%);
+  }
+  .img.jade {
+    background:
+      repeating-linear-gradient(135deg, transparent 0 20px, rgba(255,255,255,0.035) 20px 21px),
+      radial-gradient(115% 90% at 30% 78%, #69A185 0%, #2E5E48 48%, #16264D 100%);
+  }
+  .img.terra {
+    background:
+      repeating-linear-gradient(135deg, transparent 0 20px, rgba(255,255,255,0.035) 20px 21px),
+      radial-gradient(120% 90% at 42% 60%, #B96846 0%, #A65238 48%, #1B2030 100%);
+  }
+  .img-tag {
+    position:absolute; top:12px; left:12px;
+    font-family:"IBM Plex Mono", monospace; font-size:9px; letter-spacing:0.2em; text-transform:uppercase;
+    color:rgba(246,241,228,0.9);
+  }
+  .img-label {
+    position:absolute; bottom:12px; left:12px;
+    font-family:"IBM Plex Mono", monospace; font-size:9px; letter-spacing:0.16em; text-transform:uppercase;
+    color:rgba(246,241,228,0.7);
+  }
+
+  .rule { height:1px; background:var(--ca-rule); border:0; margin:0; }
+
+  /* link list hover */
+  .flink { text-decoration:none; opacity:0.82; transition:opacity .15s ease; }
+  .flink:hover { opacity:1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition:none !important; animation:none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#16264D"/>
+    <line x1="50" y1="20" x2="50" y2="80" stroke="#F6F1E4" stroke-width="1.4"/>
+    <path d="M73 36 A22 22 0 1 0 73 64" stroke="#F6F1E4" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M50 42 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2 z" fill="#C6A050"/>
+  </svg>
+</template>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="hifi-meridian.jsx"></script>
+<script type="text/babel" src="home-sections.jsx"></script>
+<script type="text/babel" src="home-sections-2.jsx"></script>
+<script type="text/babel" src="home-app.jsx"></script>
+</body>
+</html>
