@@ -95,25 +95,44 @@
   /* duotone image placeholders — per the archival-indigo imagery strategy */
   .img {
     position:relative; overflow:hidden;
-    background:
-      repeating-linear-gradient(135deg, transparent 0 20px, rgba(255,255,255,0.035) 20px 21px),
-      radial-gradient(120% 90% at 32% 18%, #2F4878 0%, #16264D 52%, #0F1B3D 100%);
+    background-size:cover;
+    background-position:center;
+    background-attachment:local;
     color:var(--ca-ivory);
   }
-  .img.warm {
+
+  .img::before {
+    content:'';
+    position:absolute;
+    inset:0;
     background:
-      repeating-linear-gradient(135deg, transparent 0 20px, rgba(255,255,255,0.035) 20px 21px),
-      radial-gradient(120% 90% at 68% 26%, #C6A050 0%, #8E6B26 44%, #1E325C 100%);
+      repeating-linear-gradient(135deg, transparent 0 20px, rgba(255,255,255,0.04) 20px 21px),
+      radial-gradient(120% 90% at 32% 18%, rgba(47,72,120,0.5) 0%, rgba(22,38,77,0.5) 52%, rgba(15,27,61,0.65) 100%);
+    pointer-events:none;
+    z-index:1;
   }
-  .img.jade {
+
+  .img.warm::before {
     background:
-      repeating-linear-gradient(135deg, transparent 0 20px, rgba(255,255,255,0.035) 20px 21px),
-      radial-gradient(115% 90% at 30% 78%, #69A185 0%, #2E5E48 48%, #16264D 100%);
+      repeating-linear-gradient(135deg, transparent 0 20px, rgba(255,255,255,0.04) 20px 21px),
+      radial-gradient(120% 90% at 68% 26%, rgba(198,160,80,0.5) 0%, rgba(142,107,38,0.5) 44%, rgba(30,50,92,0.65) 100%);
   }
-  .img.terra {
+
+  .img.jade::before {
     background:
-      repeating-linear-gradient(135deg, transparent 0 20px, rgba(255,255,255,0.035) 20px 21px),
-      radial-gradient(120% 90% at 42% 60%, #B96846 0%, #A65238 48%, #1B2030 100%);
+      repeating-linear-gradient(135deg, transparent 0 20px, rgba(255,255,255,0.04) 20px 21px),
+      radial-gradient(115% 90% at 30% 78%, rgba(105,161,133,0.5) 0%, rgba(46,94,72,0.5) 48%, rgba(22,38,77,0.65) 100%);
+  }
+
+  .img.terra::before {
+    background:
+      repeating-linear-gradient(135deg, transparent 0 20px, rgba(255,255,255,0.04) 20px 21px),
+      radial-gradient(120% 90% at 42% 60%, rgba(185,104,70,0.5) 0%, rgba(166,82,56,0.5) 48%, rgba(27,32,48,0.65) 100%);
+  }
+
+  .img > * {
+    position:relative;
+    z-index:2;
   }
   .img-tag {
     position:absolute; top:12px; left:12px;

@@ -8,15 +8,38 @@ html, body {
   height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "IBM Plex Sans", system-ui, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: hidden;
 }
 
 #root {
   width: 100%;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Visible keyboard focus for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--ca-brass-500);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
 }
 
 /* Constitutional Africa Design System */
@@ -93,25 +116,44 @@ body {
   background: var(--ca-rule-on-dark);
 }
 
-/* Image placeholders */
+/* Image placeholders with duotone overlay */
 .ca-img {
   position: relative;
   overflow: hidden;
-  background: radial-gradient(120% 80% at 30% 20%, #2F4878 0%, #16264D 55%, #0F1B3D 100%);
+  background-size: cover;
+  background-position: center;
+  background-color: #2F4878;
   color: #F6F1E4;
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
 }
 
-.ca-img.warm {
-  background: radial-gradient(120% 80% at 70% 30%, #C6A050 0%, #8E6B26 45%, #1E325C 100%);
+/* Duotone overlay layer - lighter to show images */
+.ca-img::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 22px, rgba(255, 255, 255, 0.04) 22px 23px),
+    radial-gradient(120% 80% at 30% 20%, rgba(47, 72, 120, 0.5) 0%, rgba(22, 38, 77, 0.5) 55%, rgba(15, 27, 61, 0.65) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
-.ca-img.jade {
-  background: radial-gradient(110% 80% at 30% 80%, #69A185 0%, #2E5E48 50%, #16264D 100%);
+.ca-img.warm::before {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 22px, rgba(255, 255, 255, 0.04) 22px 23px),
+    radial-gradient(120% 80% at 70% 30%, rgba(198, 160, 80, 0.5) 0%, rgba(142, 107, 38, 0.5) 45%, rgba(30, 50, 92, 0.65) 100%);
 }
 
+.ca-img.jade::before {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 22px, rgba(255, 255, 255, 0.04) 22px 23px),
+    radial-gradient(110% 80% at 30% 80%, rgba(105, 161, 133, 0.5) 0%, rgba(46, 94, 72, 0.5) 50%, rgba(22, 38, 77, 0.65) 100%);
+}
+
+/* Grain/texture overlay layer */
 .ca-img::after {
   content: "";
   position: absolute;
@@ -120,6 +162,12 @@ body {
     linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.25));
   mix-blend-mode: overlay;
   pointer-events: none;
+  z-index: 2;
+}
+
+.ca-img > * {
+  position: relative;
+  z-index: 3;
 }
 
 .ca-img .ca-img-label {

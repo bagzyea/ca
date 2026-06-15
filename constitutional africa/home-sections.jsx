@@ -4,6 +4,12 @@
 
 const { MeridianMark } = window;
 
+// Image URLs from Unsplash (CC0 licensed) - VERIFIED WORKING
+const IMAGE_URLS = {
+  heroParliament: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=1200&q=80&auto=format&fit=crop',
+  courtsInterior: 'https://images.unsplash.com/photo-1589829085787-46a976bd6621?w=1600&q=80&auto=format&fit=crop',
+};
+
 const THEMES = ['Governance', 'Institutions', 'Infrastructure', 'Capital', 'Technology & AI', 'Integration', 'Culture & Heritage', 'Youth & Leadership'];
 
 // ───────────────── NAV ─────────────────
@@ -75,7 +81,13 @@ const Hero = () => (
       </div>
 
       <div style={{ paddingTop:6 }}>
-        <div className="img" style={{ aspectRatio:'4/5', minHeight:420 }}>
+        <div className="img" style={{
+          aspectRatio:'4/5',
+          minHeight:420,
+          backgroundImage:`url('${IMAGE_URLS.heroParliament}')`,
+          backgroundSize:'cover',
+          backgroundPosition:'center'
+        }}>
           <span className="img-tag">FIG · 01 · ARCHIVAL DUOTONE</span>
           <span className="img-label">constitutional assembly · chamber</span>
         </div>

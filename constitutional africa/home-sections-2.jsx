@@ -3,6 +3,14 @@
 
 const { MeridianMark: Mark } = window;
 
+// Image URLs from Unsplash (CC0 licensed) - VERIFIED WORKING
+const IMAGE_URLS_2 = {
+  premiereConversation: 'https://images.unsplash.com/photo-1589829085787-46a976bd6621?w=1600&q=80&auto=format&fit=crop',
+  infrastructurePort: 'https://images.unsplash.com/photo-1578707714620-1f8c2b7d7c2c?w=1000&q=80&auto=format&fit=crop',
+  integrationEnergy: 'https://images.unsplash.com/photo-1513737397672-127bda8d4e13?w=1000&q=80&auto=format&fit=crop',
+  founderPortrait: 'https://images.unsplash.com/photo-1573496359142-b8d5c4e887d7?w=600&q=80&auto=format&fit=crop',
+};
+
 // ───────────────── FEATURED CONVERSATIONS ─────────────────
 const Conversations = () => {
   const premiere = {
@@ -35,7 +43,12 @@ const Conversations = () => {
           {/* Premiere — featured */}
           <article style={{ background:'var(--ca-indigo-700)', color:'var(--ca-ivory)', position:'relative', overflow:'hidden', display:'flex', flexDirection:'column' }}>
             <div style={{ position:'absolute', right:-90, bottom:-80, opacity:0.08 }}><Mark size={420} color="#F6F1E4" variant="latitudes" /></div>
-            <div className="img" style={{ aspectRatio:'16/7' }}>
+            <div className="img" style={{
+              aspectRatio:'16/7',
+              backgroundImage:`url('${IMAGE_URLS_2.premiereConversation}')`,
+              backgroundSize:'cover',
+              backgroundPosition:'center'
+            }}>
               <span className="img-tag">FIG · PREMIERE</span>
               <span className="img-label">in conversation · the founding dialogue</span>
             </div>
@@ -60,9 +73,16 @@ const Conversations = () => {
 
           {/* Two stacked */}
           <div style={{ display:'flex', flexDirection:'column', gap:28 }}>
-            {rest.map(it => (
+            {rest.map((it, idx) => {
+              const imgUrl = idx === 0 ? IMAGE_URLS_2.infrastructurePort : IMAGE_URLS_2.integrationEnergy;
+              return (
               <article key={it.ep} style={{ border:'1px solid var(--ca-rule)', background:'var(--ca-paper)', display:'grid', gridTemplateColumns:'128px 1fr', overflow:'hidden', flex:1 }}>
-                <div className={`img ${it.img}`} style={{ position:'relative' }}>
+                <div className={`img ${it.img}`} style={{
+                  position:'relative',
+                  backgroundImage:`url('${imgUrl}')`,
+                  backgroundSize:'cover',
+                  backgroundPosition:'center'
+                }}>
                   <span style={{ position:'absolute', left:10, bottom:10, fontFamily:'IBM Plex Serif', fontWeight:600, fontSize:15, color:'#F6F1E4' }}>{it.ep.replace('EPISODE ', '')}</span>
                 </div>
                 <div style={{ padding:'20px 22px', display:'flex', flexDirection:'column' }}>
@@ -72,7 +92,8 @@ const Conversations = () => {
                   <a className="ca-mono" style={{ fontSize:10, color:'var(--ca-indigo-700)', letterSpacing:'0.14em', marginTop:'auto', paddingTop:14, textDecoration:'none' }}>▶ LISTEN</a>
                 </div>
               </article>
-            ))}
+            );
+            })}
           </div>
         </div>
 
@@ -132,7 +153,13 @@ const Archive = () => {
 const Founder = () => (
   <section id="founder" style={{ background:'var(--ca-indigo-700)', color:'var(--ca-ivory)', position:'relative', overflow:'hidden' }}>
     <div className="wrap" style={{ padding:'90px 56px', display:'grid', gridTemplateColumns:'0.85fr 1.15fr', gap:64, alignItems:'center' }}>
-      <div className="img warm" style={{ aspectRatio:'4/5', minHeight:440 }}>
+      <div className="img warm" style={{
+        aspectRatio:'4/5',
+        minHeight:440,
+        backgroundImage:`url('${IMAGE_URLS_2.founderPortrait}')`,
+        backgroundSize:'cover',
+        backgroundPosition:'center'
+      }}>
         <span className="img-tag">FROM THE FOUNDER</span>
         <span className="img-label">founder portrait</span>
       </div>

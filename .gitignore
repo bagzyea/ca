@@ -1,8 +1,39 @@
+# Dependencies
 node_modules/
+
+# Build output
 dist/
-.DS_Store
-*.log
-*.swp
+.vite/
+
+# Environment
 .env
 .env.local
-.vite/
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Claude Code runtime
+.claude/scheduled_tasks.lock
+
+# Local design artifacts & working notes (not part of the app)
+*.zip
+app-final.png
+final-design.png
+redesign-homepage.png
+screenshot.png
+IMAGE_IMPLEMENTATION_SUMMARY.md
+IMAGE_PLACEMENT_GUIDE.md
+IMAGE_SOLUTIONS_GUIDE.md
+IMPLEMENTATION_COMPLETE.md
+QUICK_REFERENCE.md
+RESOLUTION_SUMMARY.md
+WHAT_YOU_SEE_NOW.md
