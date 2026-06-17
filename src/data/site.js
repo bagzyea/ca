@@ -41,27 +41,30 @@ export const AFFILIATIONS = [
   'Foundation',
 ];
 
-// Audience-segmented entry points.
+// Audience-segmented entry points (rendered as an editorial index).
 export const AUDIENCES = [
   {
-    label: 'For readers',
-    desc: 'Briefs and essays examined through one durable lens — built to be worth revisiting a decade on.',
+    kicker: 'For readers',
+    title: 'Briefs & essays',
+    meta: 'Written analysis',
+    desc: 'Durable writing examined through one lens — built to be worth revisiting a decade on.',
     to: '/writing',
-    cta: 'Read the briefs',
     tone: 'indigo',
   },
   {
-    label: 'For listeners',
-    desc: 'Long-form conversations with the economists, lawyers and builders shaping Africa’s rules.',
+    kicker: 'For listeners',
+    title: 'The conversations',
+    meta: 'The podcast',
+    desc: 'Long-form interviews with the economists, lawyers and builders shaping Africa’s rules.',
     to: '/listen',
-    cta: 'Hear the podcast',
     tone: 'brass',
   },
   {
-    label: 'For institutions',
-    desc: 'A shared framework for reading the continent — partner with us, or bring it to your team.',
+    kicker: 'For institutions',
+    title: 'Partner with us',
+    meta: 'Collaboration',
+    desc: 'A shared framework for reading the continent — bring it to your team or commission work.',
     to: '/join',
-    cta: 'Work with us',
     tone: 'jade',
   },
 ];
