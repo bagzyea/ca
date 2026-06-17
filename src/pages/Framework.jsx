@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { FONT, Container, Eyebrow, Button, useViewport } from '../components/ui';
 import MeridianMark from '../components/MeridianMark';
+import FAQ from '../components/FAQ';
+import { GLOSSARY } from '../data/faq';
 
 const LAYERS = [
   ['The rules', 'Constitutions, rights and the separation of powers — the source code of a state. Get these wrong and everything above is built on sand.'],
@@ -55,6 +57,35 @@ export default function Framework() {
               </div>
             ))}
           </div>
+        </Container>
+      </section>
+
+      {/* Primer / glossary for newcomers */}
+      <section style={{ background: 'var(--ca-paper)', borderTop: '1px solid var(--ca-rule)', borderBottom: '1px solid var(--ca-rule)' }}>
+        <Container style={{ padding: isMobile ? '56px 24px' : '88px 56px' }}>
+          <Eyebrow style={{ marginBottom: 12 }}>New to the framework?</Eyebrow>
+          <h2 style={{ fontFamily: FONT.serif, fontSize: isMobile ? 28 : 38, fontWeight: 400, color: 'var(--ca-obsidian)', margin: '0 0 40px', letterSpacing: '-0.02em' }}>
+            Start with the terms
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)', gap: isMobile ? 28 : 40 }}>
+            {GLOSSARY.map((g) => (
+              <div key={g.term}>
+                <h3 style={{ fontFamily: FONT.serif, fontSize: 20, fontWeight: 600, color: 'var(--ca-indigo-700)', margin: '0 0 8px' }}>{g.term}</h3>
+                <p style={{ fontFamily: FONT.sans, fontSize: 15, lineHeight: 1.7, color: 'var(--ca-ink-soft)', margin: 0 }}>{g.def}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* FAQ */}
+      <section style={{ background: 'var(--ca-ivory)' }}>
+        <Container style={{ padding: isMobile ? '56px 24px' : '88px 56px', maxWidth: 900 }}>
+          <Eyebrow style={{ marginBottom: 12 }}>Questions</Eyebrow>
+          <h2 style={{ fontFamily: FONT.serif, fontSize: isMobile ? 28 : 38, fontWeight: 400, color: 'var(--ca-obsidian)', margin: '0 0 32px', letterSpacing: '-0.02em' }}>
+            Frequently asked
+          </h2>
+          <FAQ />
         </Container>
       </section>
 

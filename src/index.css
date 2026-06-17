@@ -42,6 +42,40 @@ input:focus-visible {
   * { transition: none !important; animation: none !important; }
 }
 
+/* ---- Animated Africa map (hero) ---- */
+
+/* Very slow Ken-Burns zoom on the photograph inside the continent */
+.hero-map-photo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: heroKenBurns 60s ease-in-out infinite alternate;
+}
+@keyframes heroKenBurns {
+  from { transform: scale(1.02); }
+  to   { transform: scale(1.08); }
+}
+
+/* Dim dotted boundary that drifts slowly around the coastline */
+.hero-map-dots {
+  stroke-dasharray: 2 12;
+  opacity: 0.45;
+  animation: heroMapFlow 26s linear infinite;
+}
+@keyframes heroMapFlow {
+  to { stroke-dashoffset: -140; } /* 10 × (2+12) = seamless loop */
+}
+
+/* A faint pulse that drifts around the outline once per long lap */
+.hero-map-comet {
+  stroke-dasharray: 22 978; /* one lit segment over the normalised 1000-unit path */
+  opacity: 0.3;
+  animation: heroMapComet 20s linear infinite;
+}
+@keyframes heroMapComet {
+  from { stroke-dashoffset: 0; }
+  to   { stroke-dashoffset: -1000; }
+}
+
 /* Constitutional Africa Design System */
 :root {
   /* Indigo Palette (Primary) */

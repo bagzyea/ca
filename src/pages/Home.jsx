@@ -4,11 +4,13 @@ import MeridianMark from '../components/MeridianMark';
 import PillarCard from '../components/PillarCard';
 import EpisodeCard from '../components/EpisodeCard';
 import Newsletter from '../components/Newsletter';
+import CredibilityBand from '../components/CredibilityBand';
+import Audiences from '../components/Audiences';
 import { PILLARS } from '../data/pillars';
 import { EPISODES } from '../data/episodes';
+import { AFRICA_PATH } from '../data/africaPath';
 
 const IMAGES = { hero: '/images/hero-capetown.jpg', framework: '/images/infrastructure-port.jpg' };
-const GRADIENT = { hero: 'linear-gradient(135deg, #2F4878 0%, #16264D 50%, #0F1B3D 100%)' };
 const THEMES = ['Governance', 'Institutions', 'Infrastructure', 'Capital', 'Technology & AI', 'Integration', 'Culture & Heritage', 'Youth & Leadership'];
 
 export default function Home() {
@@ -18,8 +20,10 @@ export default function Home() {
   return (
     <>
       <Hero scrollY={scrollY} isMobile={isMobile} />
+      <CredibilityBand />
       <Proposition isMobile={isMobile} />
       <PillarsSection isMobile={isMobile} isTablet={isTablet} />
+      <Audiences />
       <FrameworkSummary isMobile={isMobile} />
       <ImageBand scrollY={scrollY} isMobile={isMobile} />
       <LatestEpisodes isMobile={isMobile} />
@@ -35,7 +39,7 @@ function Hero({ scrollY, isMobile }) {
         <MeridianMark size={isMobile ? 360 : 720} color="#F6F1E4" variant="latitudes" />
       </div>
 
-      <Container style={{ padding: isMobile ? '28px 24px 0' : '40px 56px 0' }}>
+      <Container style={{ position: 'relative', zIndex: 1, padding: isMobile ? '28px 24px 0' : '40px 56px 0' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: 24, alignItems: 'center', color: 'rgba(246,241,228,0.65)', paddingBottom: isMobile ? 32 : 56, fontSize: 10, letterSpacing: '0.28em', textTransform: 'uppercase' }}>
           <span>2026</span>
           <div style={{ height: 1, background: 'rgba(246,241,228,0.2)' }} />
@@ -43,7 +47,7 @@ function Hero({ scrollY, isMobile }) {
         </div>
       </Container>
 
-      <Container style={{ padding: isMobile ? '0 24px 56px' : '48px 56px 88px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.75fr 1fr', gap: isMobile ? 40 : 80, alignItems: 'start' }}>
+      <Container style={{ position: 'relative', zIndex: 1, padding: isMobile ? '0 24px 56px' : '48px 56px 88px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1.75fr 1fr', gap: isMobile ? 40 : 80, alignItems: 'start' }}>
         <div>
           <Eyebrow color="var(--ca-brass-300)" style={{ marginBottom: 32 }}>What We Study</Eyebrow>
           <h1 style={{ fontFamily: FONT.serif, fontSize: isMobile ? 40 : 62, fontWeight: 400, lineHeight: 1.12, letterSpacing: '-0.02em', margin: '0 0 36px' }}>
@@ -59,15 +63,30 @@ function Hero({ scrollY, isMobile }) {
         </div>
 
         <div style={{ paddingTop: 12 }}>
-          <div
-            className="ca-img"
-            style={{ aspectRatio: '4/5', minHeight: isMobile ? 320 : 440, borderRadius: 6, position: 'relative', backgroundImage: `linear-gradient(180deg, rgba(15,27,61,0.25) 0%, rgba(15,27,61,0.55) 100%), url('${IMAGES.hero}'), ${GRADIENT.hero}`, backgroundSize: 'cover', backgroundPosition: 'center', boxShadow: '0 30px 60px -24px rgba(10,19,48,0.6)' }}
+          <svg
+            viewBox="0 0 600 660"
+            width="100%"
+            height="auto"
+            role="img"
+            aria-label="Map of Africa filled with a photograph of Cape Town"
+            style={{ display: 'block', maxHeight: isMobile ? 360 : 520, margin: '0 auto', filter: 'drop-shadow(0 28px 36px rgba(10,19,48,0.55))' }}
           >
-            <span style={{ position: 'absolute', top: 16, left: 16, fontFamily: FONT.mono, fontSize: 8, letterSpacing: '0.24em', textTransform: 'uppercase', color: 'rgba(246,241,228,0.65)', zIndex: 2 }}>
-              Cape Town · South Africa
-            </span>
-          </div>
-          <div style={{ marginTop: 32, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            <defs>
+              <clipPath id="heroAfricaClip">
+                <path d={AFRICA_PATH} />
+              </clipPath>
+            </defs>
+            {/* the photograph (slow Ken-Burns zoom) + indigo tint, clipped to the continent */}
+            <g clipPath="url(#heroAfricaClip)">
+              <image className="hero-map-photo" href={IMAGES.hero} x="0" y="0" width="600" height="660" preserveAspectRatio="xMidYMid slice" />
+              <rect x="0" y="0" width="600" height="660" fill="rgba(15,27,61,0.32)" />
+            </g>
+            {/* dim dotted boundary that drifts around the coastline */}
+            <path className="hero-map-dots" d={AFRICA_PATH} pathLength="1000" fill="none" stroke="var(--ca-brass-300)" strokeWidth="2" strokeLinecap="round" />
+            {/* faint pulse travelling the outline */}
+            <path className="hero-map-comet" d={AFRICA_PATH} pathLength="1000" fill="none" stroke="var(--ca-brass-300)" strokeWidth="2.5" strokeLinecap="round" />
+          </svg>
+          <div style={{ marginTop: 28, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {THEMES.map((t) => (
               <span key={t} style={{ border: '1px solid rgba(246,241,228,0.22)', color: 'rgba(246,241,228,0.72)', background: 'rgba(246,241,228,0.05)', fontFamily: FONT.sans, fontSize: 11, padding: '6px 12px', borderRadius: 3 }}>
                 {t}
