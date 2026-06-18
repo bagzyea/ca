@@ -78,43 +78,43 @@ input:focus-visible {
 
 /* Constitutional Africa Design System */
 :root {
-  /* Indigo Palette (Primary) */
-  --ca-indigo-900: #0A1330;
-  --ca-indigo-800: #0F1B3D;
-  --ca-indigo-700: #16264D;
-  --ca-indigo-600: #1E325C;
-  --ca-indigo-500: #2F4878;
-  --ca-indigo-300: #7E8FB4;
-  --ca-indigo-100: #D8DDEC;
+  /* Primary — African Union dark green (variable names kept for compatibility) */
+  --ca-indigo-900: #052B17;
+  --ca-indigo-800: #073A1F;
+  --ca-indigo-700: #0C5A2E;
+  --ca-indigo-600: #14723C;
+  --ca-indigo-500: #1F8A4C;
+  --ca-indigo-300: #7FBE9A;
+  --ca-indigo-100: #D7EADD;
 
-  /* Brass Palette (Accent) */
-  --ca-brass-700: #8E6B26;
-  --ca-brass-600: #A47E2E;
-  --ca-brass-500: #B38A3A;
-  --ca-brass-400: #C6A050;
-  --ca-brass-300: #D6BC78;
+  /* Accent — African Union gold */
+  --ca-brass-700: #8A6A18;
+  --ca-brass-600: #A8841F;
+  --ca-brass-500: #C99E2B;
+  --ca-brass-400: #DCB544;
+  --ca-brass-300: #ECCD6E;
 
-  /* Jade Palette (Secondary) */
-  --ca-jade-700: #2E5E48;
-  --ca-jade-600: #3E7A5E;
-  --ca-jade-400: #69A185;
+  /* Jade Palette (secondary green) */
+  --ca-jade-700: #245C3C;
+  --ca-jade-600: #347A52;
+  --ca-jade-400: #67A888;
 
-  /* Terra Palette */
+  /* Terra Palette (warm tertiary accent) */
   --ca-terra-600: #A65238;
   --ca-terra-500: #B96846;
 
-  /* Neutrals */
-  --ca-ivory: #F6F1E4;
-  --ca-ivory-2: #EFE8D4;
-  --ca-paper: #FBF7EC;
-  --ca-paper-2: #F1ECDE;
-  --ca-obsidian: #0E1320;
-  --ca-ink: #1B2030;
-  --ca-ink-soft: #4A506A;
-  --ca-ink-faint: #8B91A8;
+  /* Neutrals — white / ivory */
+  --ca-ivory: #F6F3EA;
+  --ca-ivory-2: #EDE8D8;
+  --ca-paper: #FBF9F1;
+  --ca-paper-2: #F0ECE0;
+  --ca-obsidian: #07291A;
+  --ca-ink: #16201A;
+  --ca-ink-soft: #505C52;
+  --ca-ink-faint: #8C968B;
 
   /* Rules and dividers */
-  --ca-rule: rgba(14, 19, 32, 0.14);
+  --ca-rule: rgba(7, 41, 26, 0.14);
   --ca-rule-on-dark: rgba(246, 241, 228, 0.18);
 }
 

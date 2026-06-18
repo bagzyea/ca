@@ -94,7 +94,7 @@ export default function Framework() {
         <Container style={{ padding: isMobile ? '56px 24px' : '80px 56px', textAlign: 'center' }}>
           <h2 style={{ fontFamily: FONT.serif, fontSize: isMobile ? 28 : 36, fontWeight: 400, margin: '0 0 16px' }}>The framework, applied</h2>
           <p style={{ fontFamily: FONT.sans, fontSize: 16, lineHeight: 1.7, opacity: 0.88, maxWidth: 600, margin: '0 auto 32px' }}>
-            We apply this lens across six pillars — from institutions and belonging to enterprise and integration.
+            We apply this lens across six pillars — from constitutional governance and economic transformation to technology, culture and continental integration.
           </p>
           <Button as={Link} to="/work" variant="brass">Explore the six pillars →</Button>
         </Container>

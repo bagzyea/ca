@@ -58,7 +58,7 @@ export default function Nav() {
               Constitutional Africa
             </div>
             <div style={{ fontFamily: FONT.mono, fontSize: 8, color: 'var(--ca-brass-700)', marginTop: 3, letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-              A Platform for African Thought
+              Constitutional-Economic Transformation
             </div>
           </div>
         </Link>

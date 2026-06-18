@@ -11,7 +11,7 @@ import { EPISODES } from '../data/episodes';
 import { AFRICA_PATH } from '../data/africaPath';
 
 const IMAGES = { hero: '/images/hero-capetown.jpg', framework: '/images/infrastructure-port.jpg' };
-const THEMES = ['Governance', 'Institutions', 'Infrastructure', 'Capital', 'Technology & AI', 'Integration', 'Culture & Heritage', 'Youth & Leadership'];
+const THEMES = ['Constitutional Governance', 'Economic Transformation', 'Infrastructure', 'Technology & Digital Sovereignty', 'Culture & Heritage', 'Continental Integration'];
 
 export default function Home() {
   const scrollY = useScrollY();
@@ -34,7 +34,7 @@ export default function Home() {
 
 function Hero({ scrollY, isMobile }) {
   return (
-    <section style={{ background: 'linear-gradient(135deg, var(--ca-indigo-700) 0%, #1a2f5a 100%)', color: 'var(--ca-ivory)', position: 'relative', overflow: 'hidden' }}>
+    <section style={{ background: 'linear-gradient(135deg, var(--ca-indigo-700) 0%, var(--ca-indigo-600) 100%)', color: 'var(--ca-ivory)', position: 'relative', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', right: '-12%', top: `-${scrollY * 0.15}px`, opacity: 0.06, pointerEvents: 'none' }}>
         <MeridianMark size={isMobile ? 360 : 720} color="#F6F1E4" variant="latitudes" />
       </div>
@@ -79,7 +79,7 @@ function Hero({ scrollY, isMobile }) {
             {/* the photograph (slow Ken-Burns zoom) + indigo tint, clipped to the continent */}
             <g clipPath="url(#heroAfricaClip)">
               <image className="hero-map-photo" href={IMAGES.hero} x="0" y="0" width="600" height="660" preserveAspectRatio="xMidYMid slice" />
-              <rect x="0" y="0" width="600" height="660" fill="rgba(15,27,61,0.32)" />
+              <rect x="0" y="0" width="600" height="660" fill="rgba(7,41,26,0.34)" />
             </g>
             {/* dim dotted boundary that drifts around the coastline */}
             <path className="hero-map-dots" d={AFRICA_PATH} pathLength="1000" fill="none" stroke="var(--ca-brass-300)" strokeWidth="2" strokeLinecap="round" />
@@ -199,7 +199,7 @@ function ImageBand({ scrollY, isMobile }) {
   return (
     <section style={{ position: 'relative', height: isMobile ? 320 : 420, overflow: 'hidden', background: 'var(--ca-obsidian)' }}>
       <div style={{ position: 'absolute', inset: '-60px 0', backgroundImage: `url('${IMAGES.framework}')`, backgroundSize: 'cover', backgroundPosition: 'center', transform: `translateY(${scrollY * 0.04}px)`, willChange: 'transform' }} />
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(14,19,32,0.92) 0%, rgba(22,38,77,0.72) 45%, rgba(14,19,32,0.55) 100%)' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(5,33,20,0.92) 0%, rgba(20,90,46,0.72) 45%, rgba(5,33,20,0.55) 100%)' }} />
       <Container style={{ position: 'relative', height: '100%', padding: isMobile ? '0 24px' : '0 56px', display: 'flex', flexDirection: 'column', justifyContent: 'center', color: 'var(--ca-ivory)' }}>
         <Eyebrow color="var(--ca-brass-300)" style={{ marginBottom: 18 }}>Infrastructure & Sovereignty</Eyebrow>
         <h2 style={{ fontFamily: FONT.serif, fontSize: isMobile ? 28 : 40, fontWeight: 400, lineHeight: 1.2, letterSpacing: '-0.015em', margin: 0, maxWidth: 720 }}>

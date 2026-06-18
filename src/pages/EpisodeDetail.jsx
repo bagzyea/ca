@@ -21,7 +21,7 @@ export default function EpisodeDetail() {
 
   return (
     <>
-      <section style={{ background: 'linear-gradient(135deg, var(--ca-indigo-700) 0%, #1a2f5a 100%)', color: 'var(--ca-ivory)' }}>
+      <section style={{ background: 'linear-gradient(135deg, var(--ca-indigo-700) 0%, var(--ca-indigo-600) 100%)', color: 'var(--ca-ivory)' }}>
         <Container style={{ padding: isMobile ? '48px 24px' : '80px 56px', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 320px', gap: isMobile ? 32 : 56, alignItems: 'center' }}>
           <div>
             <Link to="/listen" style={{ fontFamily: FONT.mono, fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ca-brass-300)', textDecoration: 'none' }}>← All episodes</Link>

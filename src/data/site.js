@@ -1,6 +1,7 @@
 export const SITE = {
   name: 'Constitutional Africa',
-  tagline: 'A Platform for African Thought',
+  tagline: 'A Platform for Africa’s Constitutional-Economic Transformation',
+  foundation: 'Founded under the auspices of the Tindira Foundation',
   email: 'hello@constitutionalafrica.org',
   // Newsletter: point this at your provider's form-action URL (Buttondown, Mailchimp,
   // ConvertKit, etc). If left empty the form simulates success locally.

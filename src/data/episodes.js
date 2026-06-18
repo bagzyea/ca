@@ -29,7 +29,7 @@ export const EPISODES = [
     guestTitle: 'Land economist & policy advisor',
     duration: '48 MIN',
     date: '2026-05-14',
-    pillar: 'enterprise',
+    pillar: 'economic-transformation',
     image: '/images/guest-man.jpg',
     summary:
       'Secure, transferable land rights are the hinge on which agricultural investment turns. Dr. Anane on titling, customary tenure and the politics of reform.',

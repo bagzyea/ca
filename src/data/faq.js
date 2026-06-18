@@ -30,7 +30,7 @@ export const FAQ = [
   },
   {
     q: 'How is the work organised?',
-    a: 'Around six pillars, from institutions and belonging to enterprise and integration. Every brief, essay and conversation is examined through the single ACE lens and filed under a pillar.',
+    a: 'Around six pillars — constitutional governance, economic transformation, infrastructure & strategic assets, technology & digital sovereignty, culture & heritage, and continental integration. Every brief, essay and conversation is examined through the single ACE lens and filed under a pillar.',
   },
   {
     q: 'Do I need an economics background to follow it?',

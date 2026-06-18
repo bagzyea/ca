@@ -11,7 +11,7 @@ const PERKS = [
 export default function Join() {
   const { isMobile } = useViewport();
   return (
-    <section style={{ background: 'linear-gradient(135deg, var(--ca-indigo-700) 0%, #1a2f5a 100%)', color: 'var(--ca-ivory)', minHeight: '70vh', display: 'flex', alignItems: 'center' }}>
+    <section style={{ background: 'linear-gradient(135deg, var(--ca-indigo-700) 0%, var(--ca-indigo-600) 100%)', color: 'var(--ca-ivory)', minHeight: '70vh', display: 'flex', alignItems: 'center' }}>
       <Container style={{ padding: isMobile ? '64px 24px' : '96px 56px' }}>
         <div style={{ maxWidth: 720, margin: '0 auto', textAlign: 'center' }}>
           <Eyebrow color="var(--ca-brass-300)" style={{ marginBottom: 20 }}>Join</Eyebrow>

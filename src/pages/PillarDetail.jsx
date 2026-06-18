@@ -25,7 +25,7 @@ export default function PillarDetail() {
       {/* Hero with the pillar image */}
       <section style={{ position: 'relative', color: 'var(--ca-ivory)', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, backgroundImage: `url('${pillar.image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
-        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(120deg, rgba(14,19,32,0.92) 0%, rgba(14,19,32,0.72) 55%, ${accent}99 140%)` }} />
+        <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(120deg, rgba(7,41,26,0.92) 0%, rgba(7,41,26,0.72) 55%, ${accent}99 140%)` }} />
         <Container style={{ position: 'relative', padding: isMobile ? '64px 24px' : '104px 56px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
             <span style={{ fontFamily: FONT.serif, fontStyle: 'italic', fontSize: 40, color: 'var(--ca-brass-300)' }}>{pillar.n}</span>
